@@ -2,7 +2,7 @@
 import { useState,useEffect } from 'react';
 import { Button, Modal } from 'flowbite-react';
 import useApi from '../../Axios_instance/axios';
-import Piechart from '../../General/piechart';
+import Piechart from '../../General/PiechartAnalysis';
 import Lottie from 'lottie-react'
 import animationData from '../../lottieani/Animation - 1699614231849 (2).json'
 import animationSad from '../../lottieani/Animation - 1699676534015 (1).json'
