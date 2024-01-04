@@ -45,6 +45,7 @@ import NotesView from './users/pages/NotesView';
 import PurchasedCourse from './users/pages/PurchasedCourse';
 
 
+
 function App() {
   
   return (
