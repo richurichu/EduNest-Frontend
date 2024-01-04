@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet , Navigate } from 'react-router-dom';
-import { isAuthenticated } from './authh';
+// import { isAuthenticated } from './authh';
+import { isAuthenticated } from './NewAuth';
 import { useDispatch ,useSelector} from 'react-redux'
 
 
