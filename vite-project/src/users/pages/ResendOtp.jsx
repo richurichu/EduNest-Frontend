@@ -4,7 +4,7 @@ import useApi from '../../Axios_instance/axios';
 import { useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch ,useSelector} from 'react-redux'
-import {setCurrentRole,setMainRole} from '../../Redux/Slices/rolesSlice'
+// import {setCurrentRole,setMainRole} from '../../Redux/Slices/rolesSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,7 +24,31 @@ function ResendOtp() {
 
     const [enteredOTP, setEnteredOTP] = useState('');
     useEffect(() => {
-      
+        const handleResendOTPSumbit = async (e) => {
+       
+
+            try {
+                const response = await api.post('resend-otp/', {
+                    
+                    username: username
+                });
+                
+               
+    
+               
+                }
+    
+            catch(error){
+                toast.error("Please enter Correct OTP", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    theme: "colored"
+                });
+                
+    
+            }
+           
+        };
+        handleResendOTPSumbit()
     }, [])
     
     useEffect(() => {
@@ -66,10 +90,15 @@ function ResendOtp() {
         e.preventDefault();
 
         try {
-            const response = await api.post('VerifyOTPView/', {
+            const response = await api.post('verify-ResendOTPView/', {
                 otp: enteredOTP,
                 username: username
             });
+            toast.success(" OTP successfully verified ", {
+                position: toast.POSITION.BOTTOM_CENTER,
+                theme: "colored"
+            });
+            navigate('/login')
 
            
             }
@@ -85,32 +114,7 @@ function ResendOtp() {
        
     };
 
-    const handleResendOTPSumbit = async (e) => {
-       
-
-        try {
-            const response = await api.post('resend-otp/', {
-                
-                username: username
-            });
-            toast.success("", {
-                position: toast.POSITION.TOP_CENTER,
-                theme: "colored"
-            });
-
-           
-            }
-
-        catch(error){
-            toast.error("Please enter Correct OTP", {
-                position: toast.POSITION.TOP_CENTER,
-                theme: "colored"
-            });
-            
-
-        }
-       
-    };
+    
 
 
     return (

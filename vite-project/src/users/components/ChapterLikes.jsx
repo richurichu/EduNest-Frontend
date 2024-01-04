@@ -69,6 +69,7 @@ function ChapterLikes({chapter_id}) {
      </button>
      <span className='font-semibold'>{likesCount} Likes</span>
      
+     
     
      </div>
 

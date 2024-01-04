@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import useApi from '../../Axios_instance/axios';
-import {Avatar} from 'flowbite-react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector} from 'react-redux'
 
 function Comments({chapter_id}) {
     const user_id = localStorage.getItem('user_id');
@@ -20,7 +21,8 @@ function Comments({chapter_id}) {
     const [editMode, setEditMode] = useState(false);
     const [editedCommentText, setEditedCommentText] = useState('');
     const [commentBeingEdited, setCommentBeingEdited] = useState('');
- 
+    
+    const profileImage = useSelector(state => state.roles.profileImage);
 
    
 
@@ -233,11 +235,17 @@ function Comments({chapter_id}) {
         return commentsList.map((comment) => (
           <li key={comment.id} className="mb-4 bg-slate-100 p-4 rounded-md flex items-start">
             <div className="mr-4 bg-slate-100">
-              <Avatar
+              {/* <Avatar
                 alt="User settings"
                 img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                 rounded
-              />
+              /> */}
+              <img
+              src={comment.user.profile_image ? `${comment.user.profile_image.split('?')[0]}` : 'https://i0.wp.com/vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png?fit=860%2C681&ssl=1'}
+              
+              alt="Profile"
+              className="rounded-full h-12 w-12 object-cover mb-4"
+            />
             </div>
             <div className="flex-grow">
               <span className="text-sm font-regular mt-2 ml-4">
@@ -341,22 +349,15 @@ function Comments({chapter_id}) {
           <div className="flex items-center ml-20 mt-8">
             <textarea
               id="commentInput"
-              className="w-3/4 p-2 rounded-3xl border border-violet-400"
+              className="w-3/4 p-2 rounded-3xl border border-violet-400 resize-none"
               placeholder="Write your comment here..."
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               required
             ></textarea>
-            <button className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 ml-2" onClick={handleCommentSubmit}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17l5-5-5-5" />
-              </svg>
+            <button className="bg-indigo-500 text-white  font-semibold  p-2 px-2 rounded-full hover:bg-blue-600 ml-2" onClick={handleCommentSubmit}>
+              Comment
+                
             </button>
           </div>
           <ul className="list-none p-0 mt-8" style={{ maxHeight: '400px', overflow: 'hidden' }}>

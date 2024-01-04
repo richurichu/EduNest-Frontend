@@ -13,6 +13,7 @@ const ChatComponent = () => {
   const roomname = localStorage.getItem('fam_name');
   const room_id = localStorage.getItem('fam_idd');
   const username = localStorage.getItem('registrationusername');
+
   const client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${roomname}/`);
  
 
@@ -22,9 +23,6 @@ const ChatComponent = () => {
       console.log('WebSocket Client Connected');
     };
 
-    
-
-    
     client.onerror = (error) => {
         console.error('WebSocket Error:', error);
     };

@@ -3,7 +3,7 @@ import './App.css'
 import Signup from './users/components/Signup'
 import Home from './users/components/Home'
 import { Router,Route,Routes} from 'react-router-dom'
-import { useEffect } from 'react';
+
 import Login from './users/components/Login'
 import Otp from './users/components/Otp'
 import ResendOtp from './users/pages/ResendOtp';
@@ -20,16 +20,16 @@ import Admin_career from './Admin/pages/Admin_career'
 import CoursesList from './users/components/CoursesList'
 // import CourseDetail from './users/components/CourseDetail'
 import Admin_user_management from './Admin/pages/Admin_user_management';
-import {useNavigate} from 'react-router-dom'
-import { useSelector} from 'react-redux'
+// import {useNavigate} from 'react-router-dom'
+// import { useSelector} from 'react-redux'
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store,{persistor} from './Redux/Store'
 import RoleDirector from './RoleDirector';
 import Admin_faculty from './Admin/pages/Admin_faculty';
-import Testingnotes from './users/Testingnotes';
+
 import CourseDetailsView from './users/pages/CourseDetailsView';
-import Discussion from './users/pages/Discussions';
+// import Discussion from './users/pages/Discussions';
 import Discussion_page from './users/pages/Discussion_page';
 import Family_list from './users/pages/Family_list';
 
@@ -40,18 +40,17 @@ import Profile from './users/pages/Profile';
 import SavedQuestions from './users/pages/SavedQuestions';
 import ChatComponent from './users/pages/ChatComponent';
 import GroupCall from './users/pages/GroupCall';
-
-
+import NotesList from './users/pages/NotesList';
+import NotesView from './users/pages/NotesView';
+import PurchasedCourse from './users/pages/PurchasedCourse';
 
 
 function App() {
   
-
   return (
     <>
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-
     <RoleDirector />
     <Nav />
     <Routes>
@@ -99,6 +98,14 @@ function App() {
         <Route index element={<CoursesList />} />
         </Route>}
 
+        {<Route path='/notes' element={<PrivateRoute />}>
+        <Route index element={<NotesList />} />
+        </Route>}
+
+        {<Route path='/purchased-courses' element={<PrivateRoute />}>
+        <Route index element={<PurchasedCourse />} />
+        </Route>}
+
         {<Route path='/family' element={<PrivateRoute />}>
         <Route index element={<Family_list />} />
         </Route>}
@@ -119,7 +126,13 @@ function App() {
         <Route index element={<Faculty_Testseries />} />
         </Route>}
 
-        
+        {<Route path="/faculty-testseries" element={<PrivateRoute />}>
+        <Route index element={<Faculty_Testseries />} />
+        </Route>}
+
+        {<Route path="/notes-views/:uniqueChapterTitle" element={<PrivateRoute />}>
+        <Route index element={<NotesView />} />
+        </Route>}
 
         
         <Route path='/call' element ={<GroupCall />}/>
@@ -128,8 +141,6 @@ function App() {
         <Route path='/faculty-testseries' element ={<Faculty_Testseries />}/>
         
               
-        
-        
         <Route path='/admin-dash' element ={<Admin_dashboard />}/>
         <Route path='/admin-courses-manage' element ={<Admin_course_management />}/>
         <Route path='/admin-courses-requests' element ={<Admin_career />}/>

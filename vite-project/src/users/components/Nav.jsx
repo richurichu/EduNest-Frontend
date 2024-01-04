@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {Avatar,Dropdown,Navbar} from 'flowbite-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import {Dropdown,Navbar} from 'flowbite-react'
+
 import useApi from '../../Axios_instance/axios';
 import { isAuthenticated } from '../../Routes/authh';
 import {useNavigate} from 'react-router-dom'
-import { useState } from 'react';
+
 import TooltipWrapper from '../Tooltip';
 import { useDispatch ,useSelector} from 'react-redux'
 import {setCurrentRole,setMainRole} from '../../Redux/Slices/rolesSlice'
@@ -17,13 +16,17 @@ import animationData from  '../../lottieani/animation_lo5qlz87.json'
 
 
 
+
 function Nav() {
   const dispatch = useDispatch()
     // const [mainRole, setMainRole] = useState(localStorage.getItem('main_role'));
     // const [currentRole, setCurrentRole] = useState(localStorage.getItem('temp_role'));
     const mainRole = useSelector(state => state.roles.mainRole);
     const currentRole = useSelector(state => state.roles.currentRole);
+    const profileImage = useSelector(state => state.roles.profileImage);
     const api = useApi()
+    const baseUrl =  "http://localhost:8000";
+    // const profileImg = localStorage.getItem('profile_image');
 
     
 
@@ -86,14 +89,15 @@ function Nav() {
         }
     }
     let nav_colour = ''
+    
     if(currentRole==='TEACHER'){
        nav_colour = 'bg-sky-300';
     }
-    else if(currentRole==='TEACHER'){
+    else if(currentRole==='ADMIN'){
        nav_colour='bg-violet-300';
     }
     else if(currentRole==='USER'){
-       nav_colour='bg-pink-300'
+       nav_colour='bg-indigo-300'
     }
     
 
@@ -101,15 +105,10 @@ function Nav() {
   return (
     <Navbar fluid rounded className= {nav_colour}>
       <Navbar.Brand href="">
-        <img src="edunest logo .png" className=" mr-3 h-14 w-14 sm:h-18 sm:w-18" alt="Flowbite React Logo" />
-        <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">EduNest</span>
+        <img src="instruc.webp" className=" mr-3 h-14 w-14 sm:h-18 sm:w-18" alt="Flowbite React Logo" />
+        <span className="self-center whitespace-nowrap text-2xl font-bold dark:text-white  text-black">EduNest</span>
       </Navbar.Brand>
-      <div className="flex items-center space-x-2">
-    <input type="text" placeholder="Search..." className="px-2 py-1 rounded-md border border-gray-300 focus:border-red-800 focus:outline-none" />
-    <button className="bg-red-400 text-white px-3 py-1 rounded-md hover:bg-red-500">
-    <FontAwesomeIcon icon={faSearch} />
-    </button>
-    </div>
+      
       <div className="flex md:order-2">
       <div className="flex md:order-2">
         {isAuthenticated() ? (
@@ -117,7 +116,12 @@ function Nav() {
             arrowIcon={false}
             inline
             label={
-                <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+              <img
+              src={profileImage ? `${profileImage}` : 'https://i0.wp.com/vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png?fit=860%2C681&ssl=1'}
+              
+              alt="Profile"
+              className="rounded-full h-12 w-12 object-cover mb-4"
+            />
             }
         >
             <Dropdown.Header>
@@ -133,22 +137,24 @@ function Nav() {
             <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
             </Dropdown>
             ) : (
-                <button onClick={gotoregister} className="bg-sky-600  text-white px-4 py-2 font-medium rounded-md  hover:bg-red-300">Register</button>
+                <button onClick={gotoregister} className="bg-rose-500  text-white px-4 py-2 font-medium rounded-md  hover:bg-rose-600">Register</button>
             )}
             <Navbar.Toggle />
         </div>
       </div>
       <Navbar.Collapse>
+      <div className="flex space-x-12 md:space-x-12 ml-72 flex-col md:flex-row ">
+      
       
         {/* <Navbar.Link as={Link} to="/faculty-dash" className='text-lg'>notes</Navbar.Link> */}
         
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/"  className='text-lg'>Home</Navbar.Link>}
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/courses"  className='text-lg'>Courses</Navbar.Link>}
+       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/"  className='text-lg font-bold text-black'>Home</Navbar.Link>}
+       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/courses"  className='text-lg font-bold text-black'>Courses</Navbar.Link>}
       
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="discussion_page"  className='text-lg'>Discuss</Navbar.Link>}
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/Quizlist"  className='text-lg'>Testseries</Navbar.Link>}
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/family"  className='text-lg'>Family</Navbar.Link>}
-       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/call"  className='text-lg'>chat</Navbar.Link>}
+       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="discussion_page"  className='text-lg font-bold text-black'>Discuss</Navbar.Link>}
+       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/Quizlist"  className='text-lg font-bold text-black'>Testseries</Navbar.Link>}
+       {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/family"  className='text-lg font-bold text-black'>Family</Navbar.Link>}
+       {/* {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/notes"  className='text-lg'>notes</Navbar.Link>} */}
        {/* {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) &&<Navbar.Link as={Link} to="/discussion"  className='text-lg'>Discussion</Navbar.Link>} */}
        
 
@@ -158,8 +164,8 @@ function Nav() {
         {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-course-manage" className='text-lg'>Course Management</Navbar.Link>}
         {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-testseries" className='text-lg'>Quiz Management</Navbar.Link>}
 
-        {(mainRole === 'TEACHER' && currentRole !== 'USER') &&  <TooltipWrapper content="This switches to user side"> <button onClick={handleRoleSwitch}  className="bg-red-300 text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> User side</button> </TooltipWrapper>}
-        {(mainRole === 'TEACHER' && currentRole === 'USER') &&  <TooltipWrapper content="This switches to Faculty side"> <button onClick={handleRoleSwitch}  className="bg-red-300 text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> Faculty side</button> </TooltipWrapper>}
+        {(mainRole === 'TEACHER' && currentRole !== 'USER') &&  <TooltipWrapper content="This switches to user side"> <button onClick={handleRoleSwitch}  className="  text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 font-bold text-black "> User side</button> </TooltipWrapper>}
+        {(mainRole === 'TEACHER' && currentRole === 'USER') &&  <TooltipWrapper content="This switches to Faculty side"> <button onClick={handleRoleSwitch}  className="  text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 font-bold text-black "> Faculty side</button> </TooltipWrapper>}
 
 
         
@@ -169,15 +175,15 @@ function Nav() {
         {currentRole === "ADMIN" && <Navbar.Link as={Link} to="/admin-faculties" className='text-lg'>Faculties</Navbar.Link>}
         
         {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <div className="flex items-center ">
-         <Navbar.Link as={Link} to="/careers"  className='text-lg mb-2'>Careers</Navbar.Link>
+         <Navbar.Link as={Link} to="/careers"  className='text-lg mb-2 font-bold text-black'>Careers</Navbar.Link>
          <div className="w-10 h-10">
         <Lottie animationData={animationData} className="w-full h-full mb-1" />
        </div>
       </div>}
-        {(mainRole === 'ADMIN' && currentRole !== 'USER') &&  <TooltipWrapper content="This switches to user side"> <button onClick={handleRoleSwitch}  className="bg-red-300 text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> User side</button> </TooltipWrapper>}
-        {(mainRole === 'ADMIN' && currentRole === 'USER') &&  <TooltipWrapper content="This switches to Admin side"> <button onClick={handleRoleSwitch}  className="bg-red-300 text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> Admin side</button> </TooltipWrapper>}
+        {(mainRole === 'ADMIN' && currentRole !== 'USER') &&  <TooltipWrapper content="This switches to user side"> <button onClick={handleRoleSwitch}  className=" text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> User side</button> </TooltipWrapper>}
+        {(mainRole === 'ADMIN' && currentRole === 'USER') &&  <TooltipWrapper content="This switches to Admin side"> <button onClick={handleRoleSwitch}  className=" text-black font-semibold text-lg  px-1 py-1  border-2 border-white rounded-lg  hover:bg-red-400 "> Admin side</button> </TooltipWrapper>}
 
-        
+        </div>
       </Navbar.Collapse>
       <ToastContainer />
       

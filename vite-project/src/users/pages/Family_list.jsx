@@ -3,12 +3,17 @@ import { useState,useEffect } from 'react'
 import useApi from '../../Axios_instance/axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import TooltipWrapper from '../Tooltip';
+
 import Lottie from 'lottie-react'
 import homeanimation  from '../../lottieani/Animation - 1700565356400 (1).json'
 import {useNavigate} from 'react-router-dom'
+import { useSpring, animated } from 'react-spring';
+
+import Loader from '../../General/loader';
+
 function Family_list() {
     const user_id = localStorage.getItem('user_id');
+    const [isLoading, setIsLoading] = useState(false);
     const fam_name = localStorage.getItem('fam_name');
    
    
@@ -25,6 +30,7 @@ function Family_list() {
     localStorage.setItem('is_owner', isowner);
     const loadFamilylist = async () => {
         try {
+          setIsLoading(true)
             const response = await api.get(`families/get-families-and-check-payment/${user_id}/`);
          
           setFamilies(response.data.families)
@@ -32,7 +38,7 @@ function Family_list() {
           sethasFamily(response.data.has_family)
           setIsowner(response.data.is_owner)
           console.log(response.data , 'response))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
-         
+          setIsLoading(false)
          
         } catch (error) {
           console.error('Error fetching comments:', error);
@@ -43,6 +49,9 @@ function Family_list() {
         loadFamilylist()
        
       }, [])
+
+      
+      
 
       
 
@@ -145,6 +154,13 @@ useEffect(() => {
 }, [])
 
 
+const pulsatingProps = useSpring({
+  loop: { reverse: true },
+  from: { scale: 1},
+  to: { scale: 1.4 },
+  config: { duration: 550, tension: 100, friction: 20 },
+  reset: true,
+});
 
 
 const fetchFamily = async () => {
@@ -193,6 +209,8 @@ const JoinFamily = async (fam_Id) => {
 
   return (
     <>
+   {isLoading ? (<Loader />):(
+    
     <div className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-6">
       <div className="flex flex-col items-center md:flex-row md:items-center">
         <h2 className="text-4xl font-bold mb-4 text-center text-sky-700 tracking-wide md:text-left md:mr-4">
@@ -205,16 +223,20 @@ const JoinFamily = async (fam_Id) => {
     </button>
       
       
-    {(hasFamily || isowner)  &&  <button onClick={fetchFamily} className="bg-sky-500 text-white font-bold px-4 py-2 rounded-md ml-4 hover:bg-sky-700 transition duration-300">
+    {(hasFamily || isowner)  &&  <animated.button  style={{
+            transform: pulsatingProps.scale.to(scale => `scale(${scale})`),
+            // Add other styles as needed
+          }} onClick={fetchFamily} className="bg-sky-500 text-white font-bold px-4 py-2 rounded-md ml-4 hover:bg-sky-700 transition duration-300">
         Your Family
-      </button> }
+      </animated.button> }
   
       <div className="flex flex-col mb-16">
         {Families && Families.map((family)=>(
         <div key ={family.id} className="bg-white w-full md:w-10/12 p-2 py-6 rounded-xl shadow-md hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2 mb-4 flex flex-col md:flex-row items-center mt-6">
           <img
             className="w-20 h-20 rounded-full md:mr-2 md:ml-4 mb-4 md:mb-0"
-            src="https://d3cif2hu95s88v.cloudfront.net/blog/wp-content/uploads/2020/06/21073807/Tullips.jpg"
+            
+            src={family.family_image ? `${family.family_image.split('?')[0]}` : 'https://d3cif2hu95s88v.cloudfront.net/blog/wp-content/uploads/2020/06/21073807/Tullips.jpg'}
             alt="User Profile"
           />
   
@@ -282,7 +304,7 @@ const JoinFamily = async (fam_Id) => {
                 </div>
               </div>
             )}
-    </div>
+    </div>)}
   </>
   
   )

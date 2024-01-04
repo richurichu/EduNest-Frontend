@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import useApi from '../../Axios_instance/axios';
 import TooltipWrapper from '../../users/Tooltip'
 import { Modal, Button, Label, Textarea } from 'flowbite-react';
+import { useSpring, animated } from 'react-spring';
 
 function Faculty_course_management() {
     const api = useApi()
@@ -13,6 +14,7 @@ function Faculty_course_management() {
     const [notes, setNotes] = useState(null);
     const [chapters, setChapters] = useState([])
     const [file, setFile] = useState(null)
+    const [isVideoUploading , setisVideoUploading ] = useState(false)
 
     const [editingChapterId, setEditingChapterId] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false); 
@@ -20,15 +22,34 @@ function Faculty_course_management() {
     const [chapterDescription, setChapterDescription] = useState('');
     const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
     const [chapterToDelete, setChapterToDelete] = useState(null);
+    const [textIndex, setTextIndex] = useState(0);
+
+    const textVariants = [
+    
+        '.',
+        '..',
+        '...',
+        '....'
+        
+      ];
+    
+      const textmultipleAnimation = useSpring({
+        opacity: 1,
+        from: { opacity: 0 },
+        reset: true,
+        config: { duration: 1000 ,tension: 300, friction: 20  },
+        onRest: () => {
+          // Change text when the animation finishes
+          setTextIndex((prevIndex) => (prevIndex + 1) % textVariants.length);
+        },
+      });
+    
 
     const seechapter = async () => {
         try {
             const response = await api.get('courses-about/chapters/');
             if(response) {
                 setChapters(response.data);
-                
-                
-               
             }
         } catch (error) {
             toast.error(error.response.data.message, {
@@ -133,6 +154,7 @@ function Faculty_course_management() {
         formData.append('notes', notes);
 
         try {
+            setisVideoUploading(true)
       
             const response = await api.post(
                `courses-about/create-chapter/`,
@@ -150,7 +172,7 @@ function Faculty_course_management() {
                
                 setTitle('')
                 setDescription('')
-               
+                setisVideoUploading(false)
                 
                  toast.success("You have successfully uploaded chapter", {
                    position: toast.POSITION.BOTTOM_CENTER,
@@ -220,9 +242,11 @@ function Faculty_course_management() {
                             className="w-full py-2 px-3"
                         />
                     </div>
-                    <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline ml-36 mt-8" type="submit">
+                    {isVideoUploading ? (<animated.button  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline ml-36 mt-8" style={textmultipleAnimation} type="submit">
+                        Uploading<span className='text-white font-extrabold text-xl'></span>...
+                    </animated.button>) : (<button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline ml-36 mt-8" type="submit">
                         Submit
-                    </button>
+                    </button>)}
                 </form>
                 <form onSubmit={handleimage}>
                 <hr className="border-gray-300 mb-8 mt-8" /> {/* Dividing line with top and bottom margin */}

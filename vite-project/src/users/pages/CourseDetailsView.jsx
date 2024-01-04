@@ -3,15 +3,17 @@ import ReactPlayer from 'react-player';
 import useApi from '../../Axios_instance/axios';
 import { useParams } from 'react-router-dom';
 import Comments from '../components/Comments';
-import Skeleton from 'react-loading-skeleton';
+
 // import animationData from '../../lottieani/animation_lo607feh.json'
 import animationData from '../../lottieani/animation_lo607feh.json'
 import PayPalComponent from '../components/PayPalComponent';
 import Lottie from 'lottie-react'
 import  animationDataa from '../../lottieani/animation_lobt01oj.json'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Confetti from 'react-confetti';
 import Loader from '../../General/loader';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import ChapterLikes from '../components/ChapterLikes';
@@ -22,6 +24,9 @@ function CourseDetailsView() {
    
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [teacher, setTeacher] = useState('')
+    const [Title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
     const [paymentmodal, setPaymentmodal] = useState(false);
     const [isNoteModalVisible, setIsNoteModalVisible] = useState(false);
     const [noteContent, setNoteContent] = useState("");
@@ -41,6 +46,7 @@ function CourseDetailsView() {
     const [currentVideo, setCurrentVideo] = useState('');
     const [currentVideo_id, setCurrentVideo_id] = useState('');
     
+    
     const baseUrl = "http://127.0.0.1:8000"; 
 
    
@@ -52,7 +58,15 @@ function CourseDetailsView() {
             setChapters(response.data.chapters);
             setIspurchased(response.data.purchased);
             
-            setCurrentVideo(baseUrl + response.data.chapters[0]?.video || '');  
+            const videoUrlFromJson = response.data.chapters[0]?.video || '';
+            const modifiedVideoUrl = videoUrlFromJson.split('?')[0];
+
+            setCurrentVideo(modifiedVideoUrl)
+
+            // setCurrentVideo(baseUrl + response.data.chapters[0]?.video || '');  
+            setTitle(response.data.chapters[0]?.title || '');  
+            setDescription(response.data.chapters[0]?.description || '');  
+            setTeacher(response.data.chapters[0]?.course.teacher.username || '');  
             setCurrentVideo_id(response.data.chapters[0]?.id || '');  
             SetlikesCount(response.data.chapters[0]?.Likes_count )
             setIsLoading(false)
@@ -80,7 +94,10 @@ function CourseDetailsView() {
                 content: noteContent
             });
             if (response.status === 201) {
-                console.log('successfull')
+                toast.success("Your Note have been saved ", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    theme: "colored"
+                });
 
                 setIsNoteModalVisible(false)
                 setIsPlaying(true)
@@ -100,6 +117,7 @@ function CourseDetailsView() {
         setIsNoteModalVisible(true)
         setIsPlaying(false)
         
+        
     }
     const Closenote = () => {
 
@@ -110,6 +128,8 @@ function CourseDetailsView() {
         
     }
     
+    
+
     console.log(currentVideo_id)
 
     return (
@@ -118,12 +138,17 @@ function CourseDetailsView() {
         
         <div className="flex flex-col mt-10 lg:flex-row items-start bg-slate-100">
           <div className="w-full lg:w-2/3 lg:mr-6 mb-6 lg:mb-0">
-                <ReactPlayer url={currentVideo} controls={true} playing={true}   width="100%" height="100%" />
-                
-                {/* <button className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 mt-4" onClick={takenote}>Take Note </button> */}
-
-          
+            <div className="ml-4 ">
+                <ReactPlayer url={currentVideo}   controls={true} muted={true}  playing={isPlaying} volume={true} onProgress={(progress) => setCurrentTimestamp(progress.playedSeconds)} width="100%" height="100%" />
+                </div>
+                <div className="flex ">
                 {currentVideo_id &&(<ChapterLikes  chapter_id ={currentVideo_id}/>)}
+                <div className="flex-grow"></div>
+                <button className="bg-indigo-500 text-white font-semibold px-4 py-2 rounded-full  hover:bg-indigo-600 mt-4 mr-2 " onClick={takenote}>Take Notes </button>
+                </div>
+                <h5 className="text-xl font-bold  ml-4 mt-4">  {Title}</h5>
+                {/* <h5 className="text-xl font-bold ml-4 mt-4">{teacher}</h5> */}
+                <h5 className="text-xl font-normal  ml-4 mt-4">{description}</h5>
                 
                {currentVideo_id &&(<Comments  chapter_id ={currentVideo_id}/>)} 
           </div>
@@ -133,12 +158,12 @@ function CourseDetailsView() {
                 <h3 className="text-xl font-bold mb-4">Chapters</h3>
                 <ul>
                     {chapters.map(chapter => (
-                        <li key={chapter.id} className="mb-4 bg-white shadow-lg p-4 rounded flex items-center justify-between transform transition-transform duration-900 hover:scale-104 hover:bg-gray-200 cursor-pointer">
+                        <li key={chapter.id} className={`mb-4 bg-white shadow-lg p-4 rounded flex items-center justify-between transform transition-transform duration-900 hover:scale-104 hover:bg-gray-200 cursor-pointer ${currentVideo_id === chapter.id ? 'border-green-500 border-2' : ''}`}>
                             <Lottie animationData={animationData} className="w-12 h-12" />
                             <h3 className="flex-grow text-gray-700 ml-4 text-xl font-bold">{chapter.title}</h3>
                            {chapter.is_free || ispurchased  ?( <button 
                                 className="text-white bg-indigo-500 px-4 py-2 rounded-full hover:bg-indigo-600 w-20"
-                                onClick={() => {setCurrentVideo(baseUrl + chapter.video),setCurrentVideo_id(chapter.id),SetlikesCount(chapter.Likes_count)}}
+                                onClick={() => {setCurrentVideo(chapter.video.split('?')[0]),setCurrentVideo_id(chapter.id),SetlikesCount(chapter.Likes_count),setTitle(chapter.title),setDescription(chapter.description)}}
                             >
                                 Play
                             </button>)
@@ -191,7 +216,7 @@ function CourseDetailsView() {
                         {isNoteModalVisible && (
                 <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-4 rounded-md w-2/3">
-                    <h3 className="text-xl mb-4">Take a Note at {Math.floor(currentTimestamp)} seconds</h3>
+                    <h3 className="text-xl mb-4">Take a Note at<span className='text-red-500 font-bold text-xl ml-2'>{Math.floor(currentTimestamp)} seconds</span>  </h3>
                         <textarea 
                             value={noteContent} 
                             onChange={(e) => setNoteContent(e.target.value)}

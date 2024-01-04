@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import { useEffect,useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import './Signup.css';
-import Buttons from '../../General/spinner';
+import Loader from '../../General/loader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'lottie-react'
@@ -142,7 +142,7 @@ function Signup() {
 
   return (
     <>
-    { loading ? (<Buttons />):(
+    { loading ? (<Loader />):(
    <div className="flex flex-col lg:flex-row h-screenbg-gradient-to-b from-slate-100 to-red-200">
     <div className="w-full lg:w-1/2 ml-10 py-20 lg:py-0 flex items-center">
         <div className='w-3/4 h-3/4 mx-auto lg:mt-36' >

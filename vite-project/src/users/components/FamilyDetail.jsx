@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal } from 'flowbite-react';
 import { useState } from 'react';
 import useApi from '../../Axios_instance/axios';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
 
 function FamilyDetail() {
@@ -106,7 +106,7 @@ function FamilyDetail() {
             <h3 className="text-lg font-semibold mb-2">Total Points : 17</h3>
           </div>
           <div onClick={()=>navigate('/call')} className="bg-blue-500 p-2 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2 mb-4  mt-20">
-          <h3 className="text-lg font-semibold mb-2 text-white ml-20 mr-4 ">Voice Chat</h3>
+          <h3 className="text-lg font-semibold mb-2 text-white ml-20 mr-4 ">Video Call</h3>
     </div>
     <div onClick={()=>handleLeaveFamily()} className="bg-red-500 p-2 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2 mb-4  mt-20">
           <h3 className="text-lg font-semibold mb-2 text-white ml-20 mr-4 ">Leave Family</h3>

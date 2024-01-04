@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect,useRef } from 'react';
+
 
 function QuestionTab({questions,setCurrentquestionid ,currentquestionid, attempted ,handlesubmitclick,minutes,seconds ,timeOver}) {
 

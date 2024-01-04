@@ -7,8 +7,8 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useReactMediaRecorder } from 'react-media-recorder';
-import { FaMicrophone } from 'react-icons/fa';
-import { FaStop } from 'react-icons/fa';
+// import { FaMicrophone } from 'react-icons/fa';
+// import { FaStop } from 'react-icons/fa';
 import Lottie from 'lottie-react'
 import  animationData from '../../lottieani/Animation - 1699268857209 (1).json'
 
@@ -336,7 +336,7 @@ const handleNestedReplySubmit = async (e) => {
 };
       const renderComments = (commentsList) => {
         return commentsList.map((comment) => (
-          <li key={comment.id} className="mb-4 p-4 rounded-md flex items-start">
+          <li key={comment.id} className="mb-4 p-4 rounded-md flex items-start  ">
             <div className="mr-4 ">
               <Avatar
                 alt="User settings"
@@ -420,7 +420,7 @@ const handleNestedReplySubmit = async (e) => {
         onMouseDown={handleReplyStartRecording}
         onMouseUp={handleReplyStopRecording}
       >
-         {isReplyRecording ? <FaStop /> : <FaMicrophone />}
+         {/* {isReplyRecording ? <FaStop /> : <FaMicrophone />} */}
       </button >)}
         </div>
       </div>
@@ -446,8 +446,7 @@ const handleNestedReplySubmit = async (e) => {
     </button>
   </div>
 )}
-
-                        {showReplies[comment.id] && comment.replies.length > 0 && (
+      {showReplies[comment.id] && comment.replies.length > 0 && (
             <ul className="list-none p-0 ml-8">
                 {renderComments(comment.replies)}
             </ul>
@@ -516,7 +515,7 @@ const handleNestedReplySubmit = async (e) => {
         onMouseDown={handleStartRecording}
         onMouseUp={handleStopRecording}
       >
-         {isRecording ? <FaStop /> : <FaMicrophone />}
+         {/* {isRecording ? <FaStop /> : <FaMicrophone />} */}
       </button >)}
       
       {nocommentvoice && (<button
