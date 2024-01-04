@@ -10,7 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Lottie from 'lottie-react'
 import animationData from '../../lottieani/animation_lo5zanlx.json'
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 import { Modal, Button, Label, Textarea, FileInput } from 'flowbite-react';
 
 

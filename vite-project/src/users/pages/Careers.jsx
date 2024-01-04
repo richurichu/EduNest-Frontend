@@ -7,7 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import Skeleton from 'react-loading-skeleton';
 import { isAuthenticated } from '../../Routes/authh';
 import {useNavigate} from 'react-router-dom'
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 function Careers() {
  

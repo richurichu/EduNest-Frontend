@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'lottie-react'
 import animationData from '../../lottieani/Animation - 1699975136031.json'
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 
 function NotesView() {

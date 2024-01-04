@@ -5,7 +5,8 @@ import useApi from '../../Axios_instance/axios';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Ranklist from '../components/Ranklist';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 
 

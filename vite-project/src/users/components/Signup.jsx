@@ -4,7 +4,8 @@ import {useNavigate} from 'react-router-dom'
 import { useEffect,useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
 import './Signup.css';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'lottie-react'

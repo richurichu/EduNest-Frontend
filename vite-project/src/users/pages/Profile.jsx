@@ -7,7 +7,8 @@ import { useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useApi from '../../Axios_instance/axios';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 import { setProfileImage } from '../../Redux/Slices/rolesSlice';
 
 

@@ -2,7 +2,8 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import useApi from '../../Axios_instance/axios';
 import { Link } from 'react-router-dom';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 
 function PurchasedCourse() {

@@ -9,7 +9,8 @@ import homeanimation  from '../../lottieani/Animation - 1700565356400 (1).json'
 import {useNavigate} from 'react-router-dom'
 import { useSpring, animated } from 'react-spring';
 
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 function Family_list() {
     const user_id = localStorage.getItem('user_id');

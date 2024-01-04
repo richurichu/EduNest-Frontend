@@ -3,7 +3,8 @@ import React from 'react'
 import useApi from '../../Axios_instance/axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 
 
 

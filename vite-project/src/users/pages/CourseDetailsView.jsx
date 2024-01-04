@@ -11,7 +11,8 @@ import Lottie from 'lottie-react'
 import  animationDataa from '../../lottieani/animation_lobt01oj.json'
 
 import Confetti from 'react-confetti';
-import Loader from '../../General/loader';
+// import Loader from '../../General/loader';
+import Loader from '../../General/NewLoader';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
