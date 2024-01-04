@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import {Dropdown,Navbar} from 'flowbite-react'
 
 import useApi from '../../Axios_instance/axios';
-import { isAuthenticated } from '../../Routes/authh';
+// import { isAuthenticated } from '../../Routes/authh';
+import { isAuthenticated } from '../../Routes/NewAuth';
+
 import {useNavigate} from 'react-router-dom'
 
 import TooltipWrapper from '../Tooltip';

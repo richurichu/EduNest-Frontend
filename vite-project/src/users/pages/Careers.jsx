@@ -5,7 +5,8 @@ import { Modal, Button, Label, Textarea, FileInput } from 'flowbite-react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Skeleton from 'react-loading-skeleton';
-import { isAuthenticated } from '../../Routes/authh';
+// import { isAuthenticated } from '../../Routes/authh';
+import { isAuthenticated } from '../../Routes/NewAuth';
 import {useNavigate} from 'react-router-dom'
 // import Loader from '../../General/loader';
 import Loader from '../../General/NewLoader';
