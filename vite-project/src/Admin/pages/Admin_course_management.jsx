@@ -1,5 +1,6 @@
 import React from 'react'
-import Course_add from '../Components/course_add'
+// import Course_add from '../Components/course_add'
+import Course_add from '../Components/Course_adding'
 import { useState,useEffect } from 'react';
 import useApi from '../../Axios_instance/axios';
 import 'react-toastify/dist/ReactToastify.css';
