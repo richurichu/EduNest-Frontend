@@ -14,7 +14,7 @@ const ChatComponent = () => {
   const room_id = localStorage.getItem('fam_idd');
   const username = localStorage.getItem('registrationusername');
 
-  const client = new W3CWebSocket(`ws://127.0.0.1:8000/ws/chat/${roomname}/`);
+  const client = new W3CWebSocket(`wss://edunestonline.site/ws/chat/${roomname}/`);
  
 
   useEffect(() => {
