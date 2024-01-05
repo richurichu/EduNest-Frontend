@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 const  useApi =  () =>{
         const navigate = useNavigate();
         const api = axios.create({
-            baseURL: 'http://localhost:8000/',
+            baseURL: 'https://edunestonline.site',
             
         });
 
