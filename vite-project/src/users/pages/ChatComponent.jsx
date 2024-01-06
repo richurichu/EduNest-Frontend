@@ -64,8 +64,13 @@ const ChatComponent = () => {
       console.error('Error fetching comments:', error);
     }
   };
-  loadMessages()
-}, [reloadMessages, room_id,])
+  const intervalId = setInterval(() => {
+    loadMessages();
+  }, 2000); // 2000 milliseconds (2 seconds)
+
+  // Cleanup the interval when the component is unmounted
+  return () => clearInterval(intervalId);
+}, [reloadMessages, room_id])
 
 
   // const sendMessage = () => {
