@@ -24,8 +24,8 @@ function GroupCall() {
 
       let myMeeting = async (element) => {
      // generate Kit Token
-      const appID = 1972805737;
-      const serverSecret = "05bc556459763c179c115f22332ee2c1";
+      const appID = 346450445;
+      const serverSecret = "216cac9087e7922951a25b5e0679e0b6";
       const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString() ,`${userName}` );
 
 
