@@ -53,7 +53,8 @@ const ChatComponent = () => {
       console.log(response.data , 'response))))))))********************************))))))))))))')
       const historyData = response.data;
       
-      setMessages((prevMessages) => [...prevMessages, ...historyData]);
+      // setMessages((prevMessages) => [...prevMessages, ...historyData]);
+      setMessages(historyData)
      
     } catch (error) {
       console.error('Error fetching comments:', error);
@@ -93,7 +94,7 @@ const ChatComponent = () => {
         setInputMessage('');
         loadMessages()
       }
-      
+
      catch (error) {
       console.error('Error sending message:', error);
     }
