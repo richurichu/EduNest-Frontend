@@ -162,7 +162,7 @@ function Nav() {
 
 
         
-        {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-dash" className='text-lg'>Dashboard</Navbar.Link>}
+        {/* {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-dash" className='text-lg'>Dashboard</Navbar.Link>} */}
         {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-course-manage" className='text-lg'>Course Management</Navbar.Link>}
         {currentRole === "TEACHER" && <Navbar.Link as={Link} to="/faculty-testseries" className='text-lg'>Quiz Management</Navbar.Link>}
 

@@ -244,8 +244,8 @@ const JoinFamily = async (fam_Id) => {
           <div className="ml-4 md:ml-6">
             <h3 className="text-lg font-semibold mb-2">{family.name}</h3>
             <p className="text-gray-600 inline font-medium md:block md:ml-0 md:mb-2">Owner:<span className='font-bold ml-2'>{family.owner.username}</span> </p>
-            <p className="text-gray-600 inline ml-4 md:ml-0 md:mr-4 md:mb-2 font-semimedium">Rank:</p>
-            <p className="text-gray-600 inline ml-4 md:ml-0 md:mr-4 font-semimedium">Points: </p>
+            {/* <p className="text-gray-600 inline ml-4 md:ml-0 md:mr-4 md:mb-2 font-semimedium">Rank:</p>
+            <p className="text-gray-600 inline ml-4 md:ml-0 md:mr-4 font-semimedium">Points: </p> */}
           </div>
   
          { !hasFamily && (!isowner) && <button onClick={()=>JoinFamily(family.id)}

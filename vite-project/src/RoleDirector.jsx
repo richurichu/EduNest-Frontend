@@ -10,7 +10,7 @@ function RoleDirector() {
 
   useEffect(() => {
     if (currentRole === "TEACHER") {
-        navigate("/faculty-dash");
+        navigate("/faculty-course-manage");
     } else if (currentRole === "ADMIN") {
         navigate("/admin-dash");  
     } else {
