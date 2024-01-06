@@ -14,35 +14,35 @@ const ChatComponent = () => {
   const room_id = localStorage.getItem('fam_idd');
   const username = localStorage.getItem('registrationusername');
 
-  const client = new W3CWebSocket(`wss://edunestonline.site/ws/chat/${roomname}/`);
+  // const client = new W3CWebSocket(`wss://edunestonline.site/ws/chat/${roomname}/`);
  
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    client.onopen = () => {
-      console.log('WebSocket Client Connected');
-    };
+  //   client.onopen = () => {
+  //     console.log('WebSocket Client Connected');
+  //   };
 
-    client.onerror = (error) => {
-        console.error('WebSocket Error:', error);
-    };
+  //   client.onerror = (error) => {
+  //       console.error('WebSocket Error:', error);
+  //   };
    
 
-    return () => {
-      client.onmessage = null;
+  //   return () => {
+  //     client.onmessage = null;
       
-    };
+  //   };
 
-  }, []); 
+  // }, []); 
 
-  useEffect(() => {
-    client.onmessage = (message) => {
-      console.log('Received:', message.data);
-      const messageData = JSON.parse(message.data);
-      setMessages((prevMessages) => [...prevMessages, messageData]);
-    };
+  // useEffect(() => {
+  //   client.onmessage = (message) => {
+  //     console.log('Received:', message.data);
+  //     const messageData = JSON.parse(message.data);
+  //     setMessages((prevMessages) => [...prevMessages, messageData]);
+  //   };
   
-  }, [])
+  // }, [])
   
   
   const loadMessages = async () => {
@@ -61,18 +61,45 @@ const ChatComponent = () => {
   };
 
 
-  const sendMessage = () => {
-    if (inputMessage ) {
-      const messageData = {
-        text: inputMessage,
-        sender : username,
-        room_id:room_id
+  // const sendMessage = () => {
+  //   if (inputMessage ) {
+  //     const messageData = {
+  //       text: inputMessage,
+  //       sender : username,
+  //       room_id:room_id
        
-      };
-      client.send(JSON.stringify(messageData));
-      setInputMessage('');
+  //     };
+  //     client.send(JSON.stringify(messageData));
+  //     setInputMessage('');
+  //   }
+  // };
+  
+
+
+  const sendMessage = async () => {
+    try {
+      const response = await api.post(
+        `families/create-messages/`,
+        {
+              text: inputMessage,
+              sender : username,
+              room_id:room_id,
+               
+  
+          }
+      );
+      console.log(response  ,  'messages sent ')
+       
+        setInputMessage('');
+        loadMessages()
+      }
+      
+     catch (error) {
+      console.error('Error sending message:', error);
     }
   };
+
+
 
   useEffect(() => {
     loadMessages()
