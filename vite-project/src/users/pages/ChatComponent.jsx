@@ -54,9 +54,10 @@ const ChatComponent = () => {
      
       
       console.log(response.data , 'response))))))))********************************))))))))))))')
+      setMessages([])
       const historyData = response.data;
       
-      setMessages([])
+      
       setMessages(historyData)
      
     } catch (error) {
