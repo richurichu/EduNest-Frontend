@@ -13,6 +13,8 @@ const ChatComponent = () => {
   const roomname = localStorage.getItem('fam_name');
   const room_id = localStorage.getItem('fam_idd');
   const username = localStorage.getItem('registrationusername');
+  const [reloadMessages, setReloadMessages] = useState(false);
+
 
   // const client = new W3CWebSocket(`wss://edunestonline.site/ws/chat/${roomname}/`);
  
@@ -44,6 +46,7 @@ const ChatComponent = () => {
   
   // }, [])
   
+  useEffect(() => {
   
   const loadMessages = async () => {
     try {
@@ -60,6 +63,8 @@ const ChatComponent = () => {
       console.error('Error fetching comments:', error);
     }
   };
+  loadMessages()
+}, [reloadMessages, room_id,])
 
 
   // const sendMessage = () => {
@@ -92,7 +97,7 @@ const ChatComponent = () => {
       console.log(response  ,  'messages sent ')
        
         setInputMessage('');
-        loadMessages()
+        setReloadMessages((prev) => !prev);
       }
 
      catch (error) {
@@ -102,9 +107,6 @@ const ChatComponent = () => {
 
 
 
-  useEffect(() => {
-    loadMessages()
-  }, [])
   
 
   
