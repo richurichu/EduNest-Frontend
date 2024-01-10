@@ -22,8 +22,12 @@ const rolesSlice = createSlice({
         state.profileImage = action.payload;
         localStorage.setItem('profile_image', action.payload);
       },
+      setLogout: (state) => {
+        
+        state.profileImage = 'https://i0.wp.com/vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png?fit=860%2C681&ssl=1';
+      },
   }
 });
 
-export const { setCurrentRole,setMainRole, setProfileImage } = rolesSlice.actions;
+export const { setCurrentRole,setMainRole, setProfileImage,setLogout } = rolesSlice.actions;
 export default rolesSlice.reducer;

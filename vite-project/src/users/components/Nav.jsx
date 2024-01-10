@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom'
 
 import TooltipWrapper from '../Tooltip';
 import { useDispatch ,useSelector} from 'react-redux'
-import {setCurrentRole,setMainRole} from '../../Redux/Slices/rolesSlice'
+import {setCurrentRole,setMainRole,setLogout} from '../../Redux/Slices/rolesSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'lottie-react'
@@ -77,6 +77,7 @@ function Nav() {
             localStorage.clear();
             dispatch(setCurrentRole('USER'));
             dispatch(setMainRole('USER'));
+            dispatch(setLogout());
     
             delete api.defaults.headers.common["Authorization"];
             toast.success(" Logout Successfull", {
