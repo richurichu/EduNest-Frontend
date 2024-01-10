@@ -100,6 +100,8 @@ function Otp() {
                                 console.log('enteredddddddddddddddddddddddddddddddd')
                                 localStorage.setItem('temp_role', roleResponse.data.temp_role);
                                 localStorage.setItem('main_role', roleResponse.data.role);
+                                localStorage.setItem('user_id', roleResponse.data.id);
+                                
                                 console.log('22222222222222222222222222222222222222222')
                                 const temp_role = roleResponse.data.temp_role;
                                 const main_role = roleResponse.data.role;
