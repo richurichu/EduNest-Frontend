@@ -25,7 +25,7 @@ import Admin_user_management from './Admin/pages/Admin_user_management';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store,{persistor} from './Redux/Store'
-import RoleDirector from './RoleDirector';
+
 import Admin_faculty from './Admin/pages/Admin_faculty';
 
 import CourseDetailsView from './users/pages/CourseDetailsView';
@@ -52,7 +52,7 @@ function App() {
     <>
     <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-    <RoleDirector />
+    {/* <RoleDirector /> */}
     <Nav />
     <Routes>
         <Route path='/' element ={<Home />}/>
@@ -69,10 +69,7 @@ function App() {
         {<Route path='/group-chat' element={<PrivateRoute />}>
         <Route index element={<ChatComponent />} />
         </Route>}
-        
-        {/* <Route path='/discussion' element ={<Discussion />}/>
-        <Route path='/discussion_page' element ={<Discussion_page />}/> */}
-
+      
         <Route path='/answerkey/:id/' element ={<QuizAnswerkey />}/>
         
         {<Route path='/signup' element={<PublicRoute />}>
@@ -135,7 +132,6 @@ function App() {
         <Route index element={<NotesView />} />
         </Route>}
 
-        
         <Route path='/call' element ={<GroupCall />}/>
         <Route path='/faculty-dash' element ={<Faculty_dashboard />}/>
         <Route path='/faculty-course-manage' element ={<Faculty_course_management />}/>
