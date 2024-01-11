@@ -89,9 +89,17 @@ function Signup() {
           console.error('Error checking username availability:', error.response.data);
       }
     };
+
     const handleSubmit = async (e) => {
-        setLoading(true)
+        
         e.preventDefault();
+        if (/\s/.test(username) || /\s/.test(password)) {
+          toast.error("Invalid charectors ", {
+            position: toast.POSITION.TOP_CENTER,
+            theme: "colored"
+          });
+          return;
+        }
         if (password !== passwordConfirm) {
             setErrorMessage("Passwords do not match!");
             console.log('password not match ');
@@ -115,6 +123,7 @@ function Signup() {
 
        
         try {
+           setLoading(true)
             const response = await api.post('UserRegistrationView/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -131,6 +140,7 @@ function Signup() {
             navigate('/otp');
             
         } catch (error) {
+          setLoading(false)
             
           toast.error('Error registering user:', error.response.data);
         }
