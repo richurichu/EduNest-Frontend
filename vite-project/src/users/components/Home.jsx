@@ -10,7 +10,7 @@ import Lottie from 'lottie-react'
 import { useSpring, animated } from 'react-spring';
 import animationData from '../../lottieani/Animation - 1702622557576.json'
 import { useNavigate } from 'react-router-dom'
-import { motion } from "framer-motion";
+
 
 
 function Home() {
@@ -27,12 +27,7 @@ function Home() {
     reset: false,
   });
 
-  const buttonVariants = {
-    hover: {
-      x: 20,
-      transition: { duration: 0.3 },
-    },
-  };
+ 
 
   const textVariants = [
 
@@ -78,15 +73,10 @@ function Home() {
             groups. Elevate your preparation with our comprehensive platform!
           </animated.p>
 
-          <motion.button onClick={() => navigate('/courses')} className="bg-transparent mt-2 ml-4  hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-transparent rounded " style={{
-            width: 200,
-            height: 50,
-
-          }}
-            variants={buttonVariants}
-            whileHover="hover">
+          <button onClick={() => navigate('/courses')} className="bg-transparent mt-2 ml-4  hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-transparent rounded " 
+          >
             Get Started
-          </motion.button>
+          </button>
         </div>
 
 
