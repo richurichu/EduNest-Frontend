@@ -4,7 +4,7 @@ import useApi from '../../Axios_instance/axios';
 import FamilyDetail from '../components/FamilyDetail';
 
 const ChatComponent = () => {
-  const api  = useApi()
+  const api = useApi()
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [filledForm, setFilledForm] = useState(false);
@@ -16,76 +16,34 @@ const ChatComponent = () => {
   const [reloadMessages, setReloadMessages] = useState(false);
 
 
-  // const client = new W3CWebSocket(`wss://edunestonline.site/ws/chat/${roomname}/`);
- 
-
-  // useEffect(() => {
-    
-  //   client.onopen = () => {
-  //     console.log('WebSocket Client Connected');
-  //   };
-
-  //   client.onerror = (error) => {
-  //       console.error('WebSocket Error:', error);
-  //   };
-   
-
-  //   return () => {
-  //     client.onmessage = null;
-      
-  //   };
-
-  // }, []); 
-
-  // useEffect(() => {
-  //   client.onmessage = (message) => {
-  //     console.log('Received:', message.data);
-  //     const messageData = JSON.parse(message.data);
-  //     setMessages((prevMessages) => [...prevMessages, messageData]);
-  //   };
   
-  // }, [])
-  
+
   useEffect(() => {
-  
-  const loadMessages = async () => {
-    try {
+
+    const loadMessages = async () => {
+      try {
         const response = await api.get(`families/get-messages/${room_id}/`);
-     
-      
-      console.log(response.data , 'response))))))))********************************))))))))))))')
-      setMessages([])
-      const historyData = response.data;
-      
-      
-      setMessages(historyData)
-     
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  };
-  const intervalId = setInterval(() => {
-    loadMessages();
-  }, 1000); // 2000 milliseconds (2 seconds)
-
-  // Cleanup the interval when the component is unmounted
-  return () => clearInterval(intervalId);
-}, [reloadMessages, room_id])
 
 
-  // const sendMessage = () => {
-  //   if (inputMessage ) {
-  //     const messageData = {
-  //       text: inputMessage,
-  //       sender : username,
-  //       room_id:room_id
-       
-  //     };
-  //     client.send(JSON.stringify(messageData));
-  //     setInputMessage('');
-  //   }
-  // };
-  
+        console.log(response.data, 'response))))))))********************************))))))))))))')
+        setMessages([])
+        const historyData = response.data;
+
+
+        setMessages(historyData)
+
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    };
+    const intervalId = setInterval(() => {
+      loadMessages();
+    }, 1000); 
+
+    
+    return () => clearInterval(intervalId);
+  }, [reloadMessages, room_id])
+
 
 
   const sendMessage = async () => {
@@ -93,75 +51,72 @@ const ChatComponent = () => {
       const response = await api.post(
         `families/create-messages/`,
         {
-              text: inputMessage,
-              sender : username,
-              room_id:room_id,
-               
-  
-          }
+          text: inputMessage,
+          sender: username,
+          room_id: room_id,
+        }
       );
-      console.log(response  ,  'messages sent ')
-       
-        setInputMessage('');
-        setReloadMessages((prev) => !prev);
-      }
+      console.log(response, 'messages sent ')
 
-     catch (error) {
+      setInputMessage('');
+      setReloadMessages((prev) => !prev);
+    }
+
+    catch (error) {
       console.error('Error sending message:', error);
     }
   };
 
 
 
-  
 
-  
- 
+
+
+
   return (
-   
-    <div className="max-w-screen-xl mx-auto mt-8 flex ">
+
+    <div className="max-w-screen-xl mx-auto mt-8 flex">
       <div className="w-1/4 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-300 p-6 rounded-3xl">
-      <FamilyDetail />
+        <FamilyDetail />
       </div>
       {/* 3/4 width for chat messages */}
       <div className="flex-grow pr-4 relative">
-  <div className="w-3/4 mx-auto bg-stone-100 p-8 rounded-lg  h-screen ">
-    <h1 className="text-2xl mb-4">Chat Room: {roomname}</h1>
-    <div className="flex flex-col space-y-4 bg-slate-100 overflow-y-auto max-h-[80vh] ">
-      {messages.map((msg, index) => (
-        <div key={index} className={`flex flex-col items-${msg.sender === username ? 'end' : 'start'}`}>
-          <div className="mb-2">
-            {msg.sender === username ? (<strong>Me</strong>) : (<strong>{msg.sender}</strong>)}
+        <div className="w-3/4 mx-auto bg-stone-100 p-8 rounded-lg  h-screen ">
+          <h1 className="text-4xl font-bold mb-4 text-center text-sky-700 tracking-wide">Chat Room</h1>
+          <div className="flex flex-col space-y-4 bg-slate-100 overflow-y-auto max-h-[80vh] ">
+            {messages.map((msg, index) => (
+              <div key={index} className={`flex flex-col items-${msg.sender === username ? 'end' : 'start'}`}>
+                <div className="mb-2">
+                  {msg.sender === username ? (<strong>Me</strong>) : (<strong>{msg.sender}</strong>)}
+                </div>
+                <div
+                  className={`p-1 px-3 rounded-lg ${msg.sender === username ? 'bg-green-500 text-white' : 'bg-slate-300 text-black'
+                    }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
           </div>
-          <div
-            className={`p-1 px-3 rounded-lg ${
-              msg.sender === username ? 'bg-green-500 text-white' : 'bg-slate-300 text-black'
-            }`}
+
+          <input
+            type="text"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            placeholder="Type your message..."
+            className="p-2 border border-gray-300 rounded-xl mr-2 flex-grow w-3/4 ml-16 "
+          />
+          <button
+            onClick={sendMessage}
+            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
           >
-            {msg.text}
-          </div>
+            Send
+          </button>
         </div>
-      ))}
+
       </div>
-       
-    <input
-      type="text"
-      value={inputMessage}
-      onChange={(e) => setInputMessage(e.target.value)}
-      placeholder="Type your message..."
-      className="p-2 border border-gray-300 rounded-xl mr-2 flex-grow w-3/4 ml-16 "
-    />
-    <button
-      onClick={sendMessage}
-      className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
-    >
-      Send
-    </button>
-  </div>
-    
-  </div>
-</div>
-    
+    </div>
+
   );
 };
 

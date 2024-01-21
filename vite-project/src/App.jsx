@@ -43,6 +43,7 @@ import GroupCall from './users/pages/GroupCall';
 import NotesList from './users/pages/NotesList';
 import NotesView from './users/pages/NotesView';
 import PurchasedCourse from './users/pages/PurchasedCourse';
+import NotAvailabepage from './users/pages/NotAvailabepage'
 
 
 
@@ -145,6 +146,7 @@ function App() {
         <Route path='/admin-faculties' element ={<Admin_faculty />}/>
         
         <Route path='/careers' element ={<Careers />}/>
+        <Route path='*' element ={<NotAvailabepage />}/>
 
     </Routes>
     

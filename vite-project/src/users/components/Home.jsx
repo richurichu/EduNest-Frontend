@@ -9,8 +9,8 @@ import { useState } from 'react';
 import Lottie from 'lottie-react'
 import { useSpring, animated } from 'react-spring';
 import animationData from '../../lottieani/Animation - 1702622557576.json'
-import {useNavigate} from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 
 function Home() {
@@ -27,19 +27,26 @@ function Home() {
     reset: false,
   });
 
+  const buttonVariants = {
+    hover: {
+      x: 20,
+      transition: { duration: 0.3 },
+    },
+  };
+
   const textVariants = [
-    
+
     'with Study Groups',
     'with Interactive Courses',
     'with Mock Exams',
-    
+
   ];
 
   const textmultipleAnimation = useSpring({
     opacity: 1,
     from: { opacity: 0 },
     reset: true,
-    config: { duration: 3000 ,tension: 300, friction: 20  },
+    config: { duration: 3000, tension: 300, friction: 20 },
     onRest: () => {
       // Change text when the animation finishes
       setTextIndex((prevIndex) => (prevIndex + 1) % textVariants.length);
@@ -64,15 +71,22 @@ function Home() {
             </animated.span>
 
           </h1>
-           <animated.p className="text-lg mt-20 ml-4" style={textAnimation}>
+          <animated.p className="text-lg mt-20 ml-4" style={textAnimation}>
             Explore our app to access a variety of features designed to enhance
             your learning experience. Enjoy video courses, interactive quizzes,
             seamless note-taking, engaging discussions, and join specialized
             groups. Elevate your preparation with our comprehensive platform!
           </animated.p>
-          <button onClick={()=> navigate('/courses')} className="bg-transparent mt-2 ml-4  hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-transparent rounded ">
+
+          <motion.button onClick={() => navigate('/courses')} className="bg-transparent mt-2 ml-4  hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border-2 border-blue-500 hover:border-transparent rounded " style={{
+            width: 200,
+            height: 50,
+
+          }}
+            variants={buttonVariants}
+            whileHover="hover">
             Get Started
-          </button>
+          </motion.button>
         </div>
 
 
@@ -80,7 +94,7 @@ function Home() {
         </div>
 
       </div>
-      
+
     </>
 
 

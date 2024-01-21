@@ -78,10 +78,13 @@ function QuizAnswerkey() {
     
     return (
         <>
+        <h2 className="text-4xl font-bold  text-center text-sky-700 tracking-wide md:text-left md:mr-4 mt-12 mb-12 ml-6">
+        Quiz Response
+      </h2 >
         {answerresponse && answerresponse.map((answer,index)=>(
             
         <div key={answer.id}
-        className="p-4 rounded-md shadow-md mb-4 bg-white">
+        className=" rounded-md  mb-6 bg-gradient-to-r from-rose-100 via-purple-200 to-green-300 shadow-xl p-8 mr-16 ml-6 hover:transform transition-transform duration-300 hover:-translate-y-2">
             
             
         <div className="flex items-center justify-between">

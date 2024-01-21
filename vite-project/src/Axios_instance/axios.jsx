@@ -6,6 +6,8 @@ const  useApi =  () =>{
         const navigate = useNavigate();
         const api = axios.create({
             baseURL: 'https://edunestonline.site',
+            // baseURL: ' http://localhost:8000',
+           
             
         });
 

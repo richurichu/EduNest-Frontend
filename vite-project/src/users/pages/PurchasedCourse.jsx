@@ -1,9 +1,12 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useApi from '../../Axios_instance/axios';
 import { Link } from 'react-router-dom';
 // import Loader from '../../General/loader';
 import Loader from '../../General/NewLoader';
+import Lottie from 'lottie-react'
+import emptyani from '../../lottieani/Animation - 1704965843739.json'
+
 
 
 function PurchasedCourse() {
@@ -32,18 +35,18 @@ function PurchasedCourse() {
     }, []);
 
     return (
-       <div className="container mx-auto  mt-12 px-4">
+        <div className="container mx-auto  mt-12 px-4">
             <h1 className="text-4xl font-bold mt-8 ml-4 text-center text-sky-700 tracking-wide md:text-left md:mr-4"> Purchased Courses</h1>
-            {isLoading ? (<Loader />):(<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
-        
-                      
-             
-               {courses.length > 0 ? ( courses.map(course => (
+            {isLoading ? (<Loader />) : (<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+
+
+
+                {courses.length > 0 ? (courses.map(course => (
                     course.image &&
                     (<div key={course.id} className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-300  p-4 rounded shadow-lg transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                        <img 
-                            src={`http://localhost:8000${course.image}`}  
-                            alt={course.name} 
+                        <img
+                            src={course.image}
+                            alt={course.name}
                             className="w-full h-40 object-cover rounded-t"
                         />
                         <Link to={`/chapters/${course.id}`} className="block mt-4">
@@ -58,26 +61,31 @@ function PurchasedCourse() {
                             <span className="text-2xl font-bold text-gray-900">
                                 ${course.price}
                             </span>
-                            <Link 
-                            to={`/chapters/${course.id}`}
-                            className="text-white bg-cyan-700 px-4 py-2 rounded hover:bg-cyan-800 focus:outline-none inline-block"
-                        >
+                            <Link
+                                to={`/chapters/${course.id}`}
+                                className="text-white bg-cyan-700 px-4 py-2 rounded hover:bg-cyan-800 focus:outline-none inline-block"
+                            >
                                 Watch Now
                             </Link>
                         </div>
                     </div>
                     )
-                    
-                ))):( <div className=' '>
-               
-                   <h1 className='text-2xl font-bold mt-8 ml-8 text-center text-red-700 tracking-wide md:text-left md:mr-4'> No  Purchased Courses </h1>
-                   </div>)}
-                
+
+                ))) : (
+                    <div >
+
+
+                        <h1 className='text-2xl font-bold mt-8  text-center text-red-700 tracking-wide '> No  Purchased Courses </h1>
+
+
+                        <Lottie animationData={emptyani} className="w-full h-full mb-12  " />
+                    </div>)}
+
             </div>)}
-            
+
         </div>
     );
-    
+
 }
 
 export default PurchasedCourse

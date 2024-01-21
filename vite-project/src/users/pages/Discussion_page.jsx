@@ -44,15 +44,7 @@ function Discussion_page() {
       setLoading(false)
     }
   };
-  //   const loadreplies = async () => {
-  //     try {
-  //       const response = await api.get(`comments-about/discussions-replies/`);
-  //       console.log(response.data)
-
-  //     } catch (error) {
-  //       console.error('Error fetching comments:', error);
-  //     }
-  //   };
+  //  
 
   const HandleEdit = (question, image, quesId) => {
     setEditmode(true)
@@ -307,9 +299,9 @@ function Discussion_page() {
                       {question.content}
                     </div>
 
-                    <div className="image-container mt-8">
-                      <img onClick={() => handlepicture(question.image)} src={question.image} alt="Image" style={{ maxWidth: '30%', maxHeight: '30%' }} />
-                    </div>
+                     {question.image !== null && ( <div className="image-container mt-8">
+                      <img onClick={() => handlepicture(question.image)} src={question.image} style={{ maxWidth: '30%', maxHeight: '30%' }} />
+                    </div>)}
                   </div>
                   {/* Placeholder for reply, edit, and delete functionality */}
                   <div className="mt-4 ml-4">

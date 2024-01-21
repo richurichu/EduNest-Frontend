@@ -169,32 +169,7 @@ function DiscussionReplies({Question_id}) {
         }
     }
 
-    //   const handleReplySubmit = async (e) => {
-    //        e.preventDefault();
-    //         try {
-    //             const response = await api.post(`comments-about/reply/${Question_id}/`, {
-                    
-    //                 parentid : parentCommentId,
-    //                 text: replyText
-    //             });
-    //             if (response.status === 201) {
-                
-    //                 console.log('successfull')
-    //                 setReplyText('')
-    //                 setParentCommentId(null)
-    //                 loadComments();
-    //                 toast.success("Reply Posted", {
-    //                     position: toast.POSITION.BOTTOM_CENTER,
-                        
-    //                 });
-    //             } else {
-                  
-    //             }
-    //         } catch (error) {
-    //             console.error("Error saving the comment:", error);
-    //         }
-        
-    // };
+  
 
     const toggleReplies = (commentId) => {
         setShowReplies({
@@ -338,11 +313,12 @@ const handleNestedReplySubmit = async (e) => {
         return commentsList.map((comment) => (
           <li key={comment.id} className="mb-4 p-4 rounded-md flex items-start  ">
             <div className="mr-4 ">
-              <Avatar
-                alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                rounded
-              />
+            <img
+                    src={comment.user.profile_image ? `${comment.user.profile_image.split('?')[0]}` : 'https://i0.wp.com/vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png?fit=860%2C681&ssl=1'}
+
+                    alt="Profile"
+                    className="rounded-full h-12 w-12 object-cover mb-4"
+                  />
             </div>
             <div className="flex-grow ">
               <span className="text-sm font-regular mt-2 ml-4">

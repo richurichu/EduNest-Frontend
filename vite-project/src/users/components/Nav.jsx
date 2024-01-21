@@ -108,7 +108,7 @@ function Nav() {
   return (
     <Navbar fluid rounded className= {nav_colour}>
       <Navbar.Brand href="">
-        <img src="instruc.webp" className=" mr-3 h-14 w-14 sm:h-18 sm:w-18" alt="Flowbite React Logo" />
+        <img src="instruc.webp" className=" mr-3 h-14 w-14 sm:h-18 sm:w-18" alt="" />
         <span className="self-center whitespace-nowrap text-2xl font-bold dark:text-white  text-black">EduNest</span>
       </Navbar.Brand>
       

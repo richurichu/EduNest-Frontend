@@ -95,6 +95,13 @@ const handleModelOpen = (e) => {
 
 
 const handleSubmit = async () => {
+  if (/\s/.test(name) ) {
+    toast.error("Invalid charectors in Family Name ", {
+      position: toast.POSITION.TOP_CENTER,
+      theme: "colored"
+    });
+    return;
+  }
   const formData = new FormData();
   console.log(name,instruction,user_id)
   formData.append('name', name);
@@ -176,6 +183,8 @@ const fetchFamily = async () => {
           
           localStorage.setItem('fam_name',cleanedFamName);
           localStorage.setItem('fam_idd',response.data.fam_id);
+          localStorage.setItem('members_count',response.data.members_count);
+          localStorage.setItem('owner_id',response.data.owner_id);
           navigate('/group-chat')
               
       } else {

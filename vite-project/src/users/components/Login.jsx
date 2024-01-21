@@ -8,8 +8,12 @@ import {setCurrentRole,setMainRole,setProfileImage} from '../../Redux/Slices/rol
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 import Lottie from 'lottie-react'
-import animationData from '../../lottieani/animation_lo5zanlx.json'
+// import animationData from '../../lottieani/animation_lo5zanlx.json'
+// import animationData from '../../lottieani/Animation - 1704970076712.json'
+import animationData from '../../lottieani/Animation - 1704970830610.json'
+
 // import Loader from '../../General/loader';
 import Loader from '../../General/NewLoader';
 import { Modal, Button, Label, Textarea, FileInput } from 'flowbite-react';
@@ -192,6 +196,13 @@ function Login() {
     
 
     const handlepasswordSumbit = async (e) => {
+        if (/\s/.test(changepassword) || /\s/.test(confirmpassword)) {
+            toast.error("Invalid charectors ", {
+              position: toast.POSITION.TOP_CENTER,
+              theme: "colored"
+            });
+            return;
+          }
        if (changepassword !== confirmpassword){
         toast.error("Password is not matching ", {
             position: toast.POSITION.BOTTOM_CENTER,
@@ -268,7 +279,7 @@ function Login() {
       const handleCloseEmailModal = () => {
         setIsEmailModalOpen(false);
         
-        setEmail(null);
+        // setEmail(null);
       }
 
       const ForgotPassword = () => {
@@ -276,6 +287,8 @@ function Login() {
        
         
       }
+
+      
       
 
   return (
@@ -284,14 +297,14 @@ function Login() {
     <div className="flex h-screen ">
 
     {/* Left Side - Vacant */}
-    <div className="hidden lg:block lg:w-1/2 flex-col items-center justify-center h-full ml-48 mt-32 p-12">
-    <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome Back</h1>
+    <div className="hidden lg:block lg:w-1/2 flex-col items-center justify-center h-full ml-48 mt-48 p-12 ">
+    {/* <h1 className="text-3xl font-bold   text-sky-700 tracking-wide mb-4 ml-32">Welcome Back</h1> */}
     
-    <div className="w-1/2 mb-8">
+    <div className="w-1/2 mb-8 ml-24">
     <Lottie animationData={animationData} className="w-full h-full" />
     </div>
 
-    <h2 className="text-2xl font-bold text-gray-700">EduNest: Shaping the Future of Education</h2>
+    <h2 className="text-3xl font-bold mb-10 text-center text-sky-700 tracking-wide md:text-left md:mr-4 ml-4 " >Shaping the Future of Education</h2>
 </div>
 
     
