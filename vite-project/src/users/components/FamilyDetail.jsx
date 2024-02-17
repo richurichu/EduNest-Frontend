@@ -163,7 +163,7 @@ function FamilyDetail() {
             >
                 <h3 className="text-lg font-semibold mb-2">Total Points : 17</h3>
             </div> */}
-            <div onClick={() => navigate('/call')} className="bg-blue-500 p-2 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2 mb-4  mt-20 text-center">
+            <div onClick={() => navigate('/call')} className="bg-indigo-500 p-2 rounded-lg shadow-md hover:shadow-lg transform transition-transform duration-300 hover:-translate-y-2 mb-4  mt-20 text-center">
                 <h3 className="text-lg font-semibold mb-2 text-white ">Video Call</h3>
             </div>
 
@@ -193,7 +193,7 @@ function FamilyDetail() {
 
                                     <h3 className="flex-grow text-gray-700 ml-4 text-xl font-bold">{member.username}</h3>
 
-                                    {is_owner === 'true' && member.pk != owner_id && ( <button onClick={() => handleBlockMember(member.pk)}
+                                    {is_owner === 'true' && member.pk != owner_id && (<button onClick={() => handleBlockMember(member.pk)}
                                         className="text-white bg-red-500 px-4 py-2 rounded-full hover:bg-red-600 ml-4 flex-none"
 
                                     >
@@ -231,7 +231,7 @@ function FamilyDetail() {
 
                                     <h3 className="flex-grow text-gray-700 ml-4 text-xl font-bold">{member.username}</h3>
 
-                                    {is_owner == 'true' &&  member.pk != owner_id && ( <button onClick={() => handleOwnershipAdminLeaving(member.pk)}
+                                    {is_owner == 'true' && member.pk != owner_id && (<button onClick={() => handleOwnershipAdminLeaving(member.pk)}
                                         className="text-white bg-red-500 px-4 py-2 rounded-full hover:bg-red-600 ml-4 flex-none"
 
                                     >

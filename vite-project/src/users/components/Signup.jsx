@@ -154,17 +154,17 @@ function Signup() {
   return (
     <>
     { loading ? (<Loader />):(
-   <div className="flex flex-col lg:flex-row h-screenbg-gradient-to-b from-slate-100 to-red-200">
+   <div className="flex flex-col lg:flex-row h-screen bg-gradient-to-t from-rose-300 to-indigo-300 first-letter">
     <div className="w-full lg:w-1/2 ml-10 py-20 lg:py-0 flex items-center">
-        <div className='w-3/4 h-3/4 mx-auto lg:mt-36' >
+        <div className='w-3/4 h-3/4 mx-auto lg:mt-4' >
             <Lottie animationData={animationData} className="w-full h-full" />
         </div>
     </div>
 
-    <div className="w-full lg:w-1/2 flex items-center justify-center bg-white">
-        <div className="rounded-md w-10/12 mx-auto shadow-2xl px-6 py-6 mb-4 lg:mb-0">
+    <div className="w-full lg:w-1/2 flex items-center justify-center   ">
+        <div className="rounded-md w-10/12 mx-auto shadow-2xl px-6 lg:px-12 py-6 mb-4 lg:mb-0 bg-gradient-to-r from-rose-100 via-purple-200 to-pink-300 max-h-screen overflow-y-auto ">
             <form onSubmit={handleSubmit}>
-                <div className="font-medium text-black mb-8 text-xl lg:text-4xl">Signup</div>
+                <div className="   lg:text-3xl text-4xl font-bold mb-4  text-sky-700 tracking-wide">Signup</div>
       
       <div className="mb-4">
         <label htmlFor="username" className="block font-medium text-black" required style={{ fontSize: "20px" }}>Username</label>

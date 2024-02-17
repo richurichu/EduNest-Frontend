@@ -140,7 +140,7 @@ function CourseDetailsView() {
         <div className="flex flex-col mt-10 lg:flex-row items-start bg-slate-100">
           <div className="w-full lg:w-2/3 lg:mr-6 mb-6 lg:mb-0">
             <div className="ml-4 ">
-                <ReactPlayer url={currentVideo}   controls={true} muted={true}  playing={isPlaying} volume={true} onProgress={(progress) => setCurrentTimestamp(progress.playedSeconds)} width="100%" height="100%" />
+                <ReactPlayer url={currentVideo}   controls={true}   playing={isPlaying} volume={true} onProgress={(progress) => setCurrentTimestamp(progress.playedSeconds)} width="100%" height="100%" />
                 </div>
                 <div className="flex ">
                 {currentVideo_id &&(<ChapterLikes  chapter_id ={currentVideo_id}/>)}

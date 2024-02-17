@@ -235,11 +235,7 @@ function Comments({chapter_id}) {
         return commentsList.map((comment) => (
           <li key={comment.id} className="mb-4 bg-slate-100 p-4 rounded-md flex items-start">
             <div className="mr-4 bg-slate-100">
-              {/* <Avatar
-                alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                rounded
-              /> */}
+             
               <img
               src={comment.user.profile_image ? `${comment.user.profile_image.split('?')[0]}` : 'https://i0.wp.com/vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png?fit=860%2C681&ssl=1'}
               

@@ -294,7 +294,7 @@ function Login() {
   return (
     <>
     { loading ? (<Loader />):(
-    <div className="flex h-screen ">
+    <div className="flex h-screen bg-gradient-to-t from-rose-300 to-indigo-300">
 
     {/* Left Side - Vacant */}
     <div className="hidden lg:block lg:w-1/2 flex-col items-center justify-center h-full ml-48 mt-48 p-12 ">
@@ -310,8 +310,8 @@ function Login() {
     
 
     {/* Right Side - Login Form */}
-    <div className="w-full lg:w-1/2 flex items-center justify-center h-full">
-        <div className="p-12 rounded-md w-full lg:w-6/12 border border-gray-300 shadow-md">
+    <div className="w-full lg:w-1/2 flex items-center justify-center h-full  ">
+        <div className="p-12 rounded-md w-full lg:w-6/12 border border-gray-300 shadow-2xl bg-gradient-to-r from-rose-100 via-purple-200 to-pink-300">
             <form onSubmit={handleSubmit}>
                 <div className="text-4xl font-bold tracking-wider text-black text-shadow mb-6">Login</div>
     
