@@ -94,7 +94,7 @@ function Signup() {
         
         e.preventDefault();
         if (/\s/.test(username) || /\s/.test(password)) {
-          toast.error("Invalid charectors ", {
+          toast.error("Invalid charecto ", {
             position: toast.POSITION.TOP_CENTER,
             theme: "colored"
           });
