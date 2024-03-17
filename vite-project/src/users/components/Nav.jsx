@@ -153,9 +153,9 @@ function Nav() {
 
           {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/" className='text-lg font-bold text-black'>Home</Navbar.Link>}
           {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/courses" className='text-lg font-bold text-black'>Courses</Navbar.Link>}
-
-          {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="discussion_page" className='text-lg font-bold text-black'>Discuss</Navbar.Link>}
           {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/Quizlist" className='text-lg font-bold text-black'>Testseries</Navbar.Link>}
+          {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="discussion_page" className='text-lg font-bold text-black'>Discuss</Navbar.Link>}
+
           {(!currentRole || (currentRole !== 'TEACHER' && currentRole !== 'ADMIN')) && <Navbar.Link as={Link} to="/family" className='text-lg font-bold text-black'>Family</Navbar.Link>}
 
 

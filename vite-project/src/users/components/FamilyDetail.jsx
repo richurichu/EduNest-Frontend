@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal } from 'flowbite-react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import useApi from '../../Axios_instance/axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
@@ -24,6 +24,14 @@ function FamilyDetail() {
     const [membersAssignRolemodal, setMembersAssignRolemodal] = useState(false)
     const [userBanId, setUserBanId] = useState('')
     const [toBeOwnerId, setToBeOwnerId] = useState('')
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken, 'from coursedetails ');
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
+    }, []);
 
 
     const loadMembers = async () => {

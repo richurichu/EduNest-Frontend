@@ -142,6 +142,11 @@ function Profile() {
   }
 
   useEffect(() => {
+    const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
 
     loadprofile()
 
@@ -163,6 +168,7 @@ function Profile() {
       />
       <FontAwesomeIcon
         icon={faEdit}
+        style={{ color: 'black' }}
         className="absolute top-10 right-6 md:top-10 md:right-50 lg:top-2/4 lg:right-2/4 sm:top-96 sm:right-1/4 text-xl text-white cursor-pointer"
         onClick={handleEditClick}
       />

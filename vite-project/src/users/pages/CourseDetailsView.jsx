@@ -78,15 +78,23 @@ function CourseDetailsView() {
         }
     }
     useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
         
         
         fetchChapters();
     }, [courseId,liked]);
 
     const handleSaveNote = async () => {
-        console.log('video_id',currentVideo_id)
-        console.log('time',currentTimestamp)
-        console.log('content',noteContent)
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
+       
         try {
             const response = await api.post('notes-about/notes/', {
                 

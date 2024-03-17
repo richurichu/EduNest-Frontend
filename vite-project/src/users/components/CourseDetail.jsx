@@ -91,6 +91,11 @@ function CourseDetail() {
     }
 
     useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
 
 
         fetchChapters();

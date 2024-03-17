@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import  { useState } from 'react'
+import  { useState, } from 'react'
 import useApi from '../../Axios_instance/axios';
 import {useNavigate} from 'react-router-dom'
 import { useDispatch ,useSelector} from 'react-redux'
@@ -94,10 +94,10 @@ function Login() {
                
             } catch (roleError) {
                 console.log(roleError)
-                toast.error(" Sorry Admin has Blocked You !", {
-                    position: toast.POSITION.BOTTOM_CENTER,
-                    theme: "colored"
-                  });
+                // toast.error(" Sorry Admin has Blocked You !", {
+                //     position: toast.POSITION.BOTTOM_CENTER,
+                //     theme: "colored"
+                //   });
                   
                   
             }

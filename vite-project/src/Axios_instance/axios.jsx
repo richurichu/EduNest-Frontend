@@ -25,8 +25,8 @@ const  useApi =  () =>{
                 }
                 // Check if the request is for the refresh token endpoint
                 if (originalRequest.url === '/token/refresh/') {
-                    localStorage.removeItem('access_token');
-                    localStorage.removeItem('refresh_token');
+                    // localStorage.removeItem('access_token');
+                    // localStorage.removeItem('refresh_token');
                     return Promise.reject(error);
                 }
 
@@ -57,8 +57,8 @@ const  useApi =  () =>{
                     } catch (refreshError) {
                         
                         console.error("Error refreshing token:", refreshError);
-                        localStorage.removeItem('access_token');
-                        localStorage.removeItem('refresh_token');
+                        // localStorage.removeItem('access_token');
+                        // localStorage.removeItem('refresh_token');
                         
                     }
                 }

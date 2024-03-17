@@ -24,6 +24,11 @@ function ResendOtp() {
 
     const [enteredOTP, setEnteredOTP] = useState('');
     useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
         const handleResendOTPSumbit = async (e) => {
        
 

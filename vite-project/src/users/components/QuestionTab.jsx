@@ -39,12 +39,12 @@ function QuestionTab({questions,setCurrentquestionid ,currentquestionid, attempt
     
   return (
     <>
-   <div className="bg-red-200 p-4 rounded-lg flex flex-wrap mt-10 ml-8 shadow-2xl border-solid border-red-500" style={{ width: '400px', height: '380px' }}>
+   <div className="bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2 p-4 rounded-lg flex flex-wrap mt-10 ml-8 shadow-2xl border-solid border-red-500" style={{ width: '400px', height: '380px' }}>
   <div className="w-full flex flex-wrap">
     
     {questionArray.map((question,index) =>(
       <div key={index} className="w-1/5 p-2 flex items-center justify-center">
-        <div onClick={()=>handleidclick(index)} className={`w-12 h-12 bg-${attempted.includes(index) ? 'green-200' : 'white'} rounded-full flex items-center justify-center ${index===currentquestionid ? 'border-4 border-sky-500' : ''}`}>
+        <div onClick={()=>handleidclick(index)} className={`w-12 h-12 bg-${attempted.includes(index) ? 'green-400' : 'white'} rounded-full flex items-center justify-center ${index===currentquestionid ? 'border-4 border-sky-500' : ''}`}>
           <span className="text-black font-bold">{ index +1 }</span>
         </div>
       </div>
@@ -52,12 +52,12 @@ function QuestionTab({questions,setCurrentquestionid ,currentquestionid, attempt
    
   </div>
 </div>
-<div className="bg-red-200 p-4 rounded-lg mt-12 ml-8 shadow-lg border-solid border-red-500" style={{ width: '400px', height: '80px' }}>
+<div className="bg-gradient-to-r from-blue-300 via-purple-200 to-pink-300 p-4 rounded-lg mt-12 ml-8 shadow-lg border-solid border-red-500" style={{ width: '400px', height: '80px' }}>
   <div className="flex justify-center items-center mt-2">
     
       <div className="mb-2 mr-12 ">
         <span className="text-black text-xl font-semibold">Answered:</span>
-        <span className="text-green-500 text-2xl font-bold ml-2">{attemptedCount}</span>
+        <span className="text-green-600 text-2xl font-bold ml-2">{attemptedCount}</span>
       </div>
       <div className="mb-2 ml-12">
         <span className="text-black text-xl font-semibold">Unanswered:</span>

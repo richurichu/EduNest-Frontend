@@ -14,7 +14,13 @@ function PayPalComponent({ course,refresh,setmodal,paymodal}) {
     console.log(courseCopy.price)
     const api  = useApi()
    
-    
+    useEffect(() => {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken, 'from coursedetails ');
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
+    }, []);
 
     const handlePaymentComplete = async (details) => {
         console.log(coursePrice,'888888888888888888888888888888888888')

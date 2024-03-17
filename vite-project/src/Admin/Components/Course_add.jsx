@@ -12,6 +12,11 @@ function Course_add({ onCourseAdded, initialData}) {
     const token = localStorage.getItem('access_token');
 
     useEffect(() => {
+      const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            console.log(accessToken,'from coursedetails ')
+            api.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+        }
       if (initialData) {
           setCourseName(initialData.name);
           setCoursedescription(initialData.description);
