@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Lottie from 'lottie-react'
 import animationData from '../../lottieani/animation_lo5okwp7.json'
+import singup from '../../General/Images/signup_rem.png'
 
 
 function Signup() {
@@ -158,6 +159,7 @@ function Signup() {
     <div className="w-full lg:w-1/2 ml-10 py-20 lg:py-0 flex items-center">
         <div className='w-3/4 h-3/4 mx-auto lg:mt-4' >
             <Lottie animationData={animationData} className="w-full h-full" />
+            {/* <img src={singup} alt="My Image" style={{ borderRadius: '10px', height: '450px', width: '500px' }} /> */}
         </div>
     </div>
 

@@ -94,10 +94,10 @@ function Nav() {
   let nav_colour = ''
 
   if (currentRole === 'TEACHER') {
-    nav_colour = 'bg-sky-300';
+    nav_colour = 'bg-indigo-300';
   }
   else if (currentRole === 'ADMIN') {
-    nav_colour = 'bg-violet-300';
+    nav_colour = 'bg-indigo-300';
   }
   else if (currentRole === 'USER') {
     nav_colour = 'bg-indigo-300'
@@ -109,7 +109,7 @@ function Nav() {
     <Navbar fluid rounded className={nav_colour}>
       <Navbar.Brand href="">
         <img src="instruc.webp" className=" mr-3 h-14 w-14 sm:h-18 sm:w-18" alt="" />
-        <span className="self-center whitespace-nowrap text-2xl font-bold dark:text-white  text-black">EduNest</span>
+        <span className="self-center whitespace-nowrap text-2xl font-bold dark:text-white  text-black">Edunest</span>
       </Navbar.Brand>
 
       <div className="flex md:order-2">
